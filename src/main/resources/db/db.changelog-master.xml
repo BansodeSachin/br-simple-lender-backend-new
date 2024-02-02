@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd 
+   		http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.10.xsd">
+
+    <!-- Create the customer table -->
+    <changeSet id="createCustomerTable" author="Sachin.Bansode">
+        <createTable tableName="customer">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="first_name" type="varchar(45)"/>
+            <column name="last_name" type="varchar(45)"/>
+            <column name="email" type="varchar(45)"/>
+        </createTable>
+    </changeSet>
+
+    <!-- Insert data into the customer table -->
+    <changeSet id="insertCustomerData" author="Sachin.Bansode">
+        <insert tableName="customer">
+            <column name="id" value="1"/>
+            <column name="first_name" value="David"/>
+            <column name="last_name" value="Adams"/>
+            <column name="email" value="david@luv2code.com"/>
+        </insert>
+        <insert tableName="customer">
+            <column name="id" value="2"/>
+            <column name="first_name" value="John"/>
+            <column name="last_name" value="Doe"/>
+            <column name="email" value="john@luv2code.com"/>
+        </insert>
+        <insert tableName="customer">
+            <column name="id" value="3"/>
+            <column name="first_name" value="Ajay"/>
+            <column name="last_name" value="Rao"/>
+            <column name="email" value="ajay@luv2code.com"/>
+        </insert>
+        <insert tableName="customer">
+            <column name="id" value="4"/>
+            <column name="first_name" value="Mary"/>
+            <column name="last_name" value="Public"/>
+            <column name="email" value="mary@luv2code.com"/>
+        </insert>
+        <insert tableName="customer">
+            <column name="id" value="5"/>
+            <column name="first_name" value="Maxwell"/>
+            <column name="last_name" value="Dixon"/>
+            <column name="email" value="max@luv2code.com"/>
+        </insert>
+    </changeSet>
+    
+    
+    <!-- Create the user table -->
+    <changeSet id="createUserTable" author="sachin.bansode">
+        <createTable tableName="user">
+            <column name="id" type="INT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="username" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="CHAR(80)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="first_name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!-- Insert data into the user table -->
+    <changeSet id="insertUserData" author="yourname">
+        <insert tableName="user">
+            <column name="id" value="1"/>
+            <column name="username" value="john"/>
+            <column name="password" value="$2a$04$eFytJDGtjbThXa80FyOOBuFdK2IwjyWefYkMpiBEFlpBwDH.5PM0K"/>
+            <column name="first_name" value="John"/>
+            <column name="last_name" value="Doe"/>
+            <column name="email" value="john@luv2code.com"/>
+        </insert>
+        <insert tableName="user">
+            <column name="id" value="2"/>
+            <column name="username" value="mary"/>
+            <column name="password" value="$2a$04$eFytJDGtjbThXa80FyOOBuFdK2IwjyWefYkMpiBEFlpBwDH.5PM0K"/>
+            <column name="first_name" value="Mary"/>
+            <column name="last_name" value="Public"/>
+            <column name="email" value="mary@luv2code.com"/>
+        </insert>
+        <insert tableName="user">
+            <column name="id" value="3"/>
+            <column name="username" value="susan"/>
+            <column name="password" value="$2a$04$eFytJDGtjbThXa80FyOOBuFdK2IwjyWefYkMpiBEFlpBwDH.5PM0K"/>
+            <column name="first_name" value="Susan"/>
+            <column name="last_name" value="Adams"/>
+            <column name="email" value="susan@luv2code.com"/>
+        </insert>
+    </changeSet>
+
+    <!-- Create the role table -->
+    <changeSet id="createRoleTable" author="sachin.bansode">
+        <createTable tableName="role">
+            <column name="id" type="INT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(50)"/>
+        </createTable>
+    </changeSet>
+
+    <!-- Insert data into the role table -->
+    <changeSet id="insertRoleData" author="yourname">
+        <insert tableName="role">
+            <column name="id" value="1"/>
+            <column name="name" value="ROLE_EMPLOYEE"/>
+        </insert>
+        <insert tableName="role">
+            <column name="id" value="2"/>
+            <column name="name" value="ROLE_MANAGER"/>
+        </insert>
+        <insert tableName="role">
+            <column name="id" value="3"/>
+            <column name="name" value="ROLE_ADMIN"/>
+        </insert>
+    </changeSet>
+
+    <!-- Create the users_roles table -->
+    <changeSet id="createUsersRolesTable" author="sachin.bansode">
+        <createTable tableName="users_roles">
+            <column name="user_id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_pv_object"/>
+            </column>
+            <column name="role_id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_pv_object"/>
+            </column>
+           
+           <!-- 
+            <addForeignKeyConstraint
+            baseTableName="users_roles"
+            baseColumnNames="user_id"
+            referencedTableName="user"
+            referencedColumnNames="id"
+            constraintName="FK_USER_05"/>
+            
+            <addForeignKeyConstraint
+            baseTableName="users_roles"
+            baseColumnNames="role_id"
+            referencedTableName="role"
+            referencedColumnNames="id"
+            constraintName="FK_ROLE"/>
+           
+            <foreignKeyConstraint baseTableName="user" baseColumnNames="id"
+                                 referencedTableName="users_roles" referencedColumnNames="user_id"
+                                 constraintName="FK_USER_05"/>
+            <foreignKeyConstraint baseTableName="role" baseColumnNames="id"
+                                 referencedTableName="users_roles" referencedColumnNames="role_id"
+                                 constraintName="FK_ROLE"/>
+                                 
+                   -->                
+        </createTable>
+    </changeSet>
+    
+    <!-- Add foreign key constraint to users_roles table -->
+    <changeSet id="addForeignKeyConstraintUser" author="sachin.bansode">
+        <addForeignKeyConstraint
+                baseTableName="users_roles"
+                baseColumnNames="user_id"
+                referencedTableName="user"
+                referencedColumnNames="id"
+                constraintName="FK_USER_05"/>
+    </changeSet>
+    
+    <changeSet id="addForeignKeyConstraintRole" author="sachin.bansode">
+        <addForeignKeyConstraint
+            baseTableName="users_roles"
+            baseColumnNames="role_id"
+            referencedTableName="role"
+            referencedColumnNames="id"
+            constraintName="FK_ROLE"/>
+    </changeSet>
+
+    <!-- Insert data into the users_roles table -->
+    <changeSet id="insertUsersRolesData" author="sachin.bansode">
+        <insert tableName="users_roles">
+            <column name="user_id" value="1"/>
+            <column name="role_id" value="1"/>
+        </insert>
+        <insert tableName="users_roles">
+            <column name="user_id" value="2"/>
+            <column name="role_id" value="1"/>
+        </insert>
+        <insert tableName="users_roles">
+            <column name="user_id" value="2"/>
+            <column name="role_id" value="2"/>
+        </insert>
+        <insert tableName="users_roles">
+            <column name="user_id" value="3"/>
+            <column name="role_id" value="1"/>
+        </insert>
+        <insert tableName="users_roles">
+            <column name="user_id" value="3"/>
+            <column name="role_id" value="3"/>
+        </insert>
+    </changeSet>
+    
+    
+    
+    <!-- Create the borrower table -->
+    <changeSet id="createTableBorrower" author="yourname">
+        <createTable tableName="borrower">
+            <column name="id" type="INT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(60)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="email" type="VARCHAR(60)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="phone" type="VARCHAR(20)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="city" type="VARCHAR(60)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="state" type="VARCHAR(60)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="country" type="VARCHAR(60)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="pincode" type="VARCHAR(10)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="address" type="VARCHAR(100)">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!-- Create the record table -->
+    <changeSet id="createTableRecord" author="yourname">
+        <createTable tableName="record">
+            <column name="id" type="INT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="borrower_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="borrower_name" type="VARCHAR(60)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="principle_amount" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="roi" type="DECIMAL(5, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="purchase_date" type="DATE">
+                <constraints nullable="true"/>
+            </column>
+            <column name="due_date" type="DATE">
+                <constraints nullable="true"/>
+            </column>
+            <column name="status" type="VARCHAR(50)">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet id="addForeignKeyConstraintBorrower" author="sachin.bansode">
+        <addForeignKeyConstraint
+            baseTableName="record"
+            baseColumnNames="borrower_id"
+            referencedTableName="borrower"
+            referencedColumnNames="id"
+            constraintName="FK_BORROWER_ID"/>
+    </changeSet>
+
+    <!-- Create the transaction table -->
+    <changeSet id="createTableTransaction" author="yourname">
+        <createTable tableName="transaction">
+            <column name="id" type="INT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="record_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="due_date" type="DATE">
+                <constraints nullable="true"/>
+            </column>
+            <column name="description" type="VARCHAR(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="withdraw_amount" type="INT" defaultValueNumeric="0">
+                <constraints nullable="true"/>
+            </column>
+            <column name="deposit_amount" type="INT" defaultValueNumeric="0">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet id="addForeignKeyConstraintRecord" author="sachin.bansode">
+        <addForeignKeyConstraint
+            baseTableName="transaction"
+            baseColumnNames="record_id"
+            referencedTableName="record"
+            referencedColumnNames="id"
+            constraintName="FK_RECORD_ID"/>
+    </changeSet>
+
+    <!-- Insert initial data into borrower table -->
+    <changeSet id="insertDataIntoBorrower" author="yourname">
+        <insert tableName="borrower">
+            <column name="id" valueNumeric="10001"/>
+            <column name="name" value="John Doe"/>
+            <column name="email" value="john.doe@example.com"/>
+            <column name="phone" value="123-456-7890"/>
+            <column name="city" value="City1"/>
+            <column name="state" value="State1"/>
+            <column name="country" value="Country1"/>
+            <column name="pincode" value="12345"/>
+            <column name="address" value="Address1"/>
+        </insert>
+        <!-- Add similar inserts for other borrowers -->
+        <!-- Borrower 2 -->
+        <insert tableName="borrower">
+            <column name="id" valueNumeric="10002"/>
+            <column name="name" value="Jane Smith"/>
+            <column name="email" value="jane.smith@example.com"/>
+            <column name="phone" value="987-654-3210"/>
+            <column name="city" value="City2"/>
+            <column name="state" value="State2"/>
+            <column name="country" value="Country2"/>
+            <column name="pincode" value="54321"/>
+            <column name="address" value="Address2"/>
+        </insert>
+        <!-- Borrower 3 -->
+        <insert tableName="borrower">
+            <column name="id" valueNumeric="10003"/>
+            <column name="name" value="Alice Johnson"/>
+            <column name="email" value="alice.johnson@example.com"/>
+            <column name="phone" value="111-222-3333"/>
+            <column name="city" value="City3"/>
+            <column name="state" value="State3"/>
+            <column name="country" value="Country3"/>
+            <column name="pincode" value="67890"/>
+            <column name="address" value="Address3"/>
+        </insert>
+        <!-- Borrower 4 -->
+        <insert tableName="borrower">
+            <column name="id" valueNumeric="10004"/>
+            <column name="name" value="Bob Williams"/>
+            <column name="email" value="bob.williams@example.com"/>
+            <column name="phone" value="555-666-7777"/>
+            <column name="city" value="City4"/>
+            <column name="state" value="State4"/>
+            <column name="country" value="Country4"/>
+            <column name="pincode" value="98765"/>
+            <column name="address" value="Address4"/>
+        </insert>
+    </changeSet>
+
+    <!-- Insert initial data into record table -->
+    <changeSet id="insertDataIntoRecord" author="yourname">
+        <insert tableName="record">
+            <column name="id" valueNumeric="20001"/>
+            <column name="borrower_id" valueNumeric="10001"/>
+            <column name="borrower_name" value="John Doe"/>
+            <column name="principle_amount" valueNumeric="5000"/>
+            <column name="roi" valueNumeric="2.5"/>
+            <column name="purchase_date" valueDate="2023-01-01"/>
+            <column name="due_date" valueDate="2023-02-01"/>
+            <column name="status" value="Active"/>
+        </insert>
+        <!-- Add similar inserts for other records -->
+        <!-- Record 2 -->
+        <insert tableName="record">
+            <column name="id" valueNumeric="20002"/>
+            <column name="borrower_id" valueNumeric="10001"/>
+            <column name="borrower_name" value="John Doe"/>
+            <column name="principle_amount" valueNumeric="8000"/>
+            <column name="roi" valueNumeric="3.0"/>
+            <column name="purchase_date" valueDate="2023-02-15"/>
+            <column name="due_date" valueDate="2023-03-15"/>
+            <column name="status" value="Pending"/>
+        </insert>
+        <!-- Record 3 -->
+        <insert tableName="record">
+            <column name="id" valueNumeric="20003"/>
+            <column name="borrower_id" valueNumeric="10002"/>
+            <column name="borrower_name" value="Alan Warne"/>
+            <column name="principle_amount" valueNumeric="4000"/>
+            <column name="roi" valueNumeric="5.0"/>
+            <column name="purchase_date" valueDate="2023-06-15"/>
+            <column name="due_date" valueDate="2023-09-15"/>
+            <column name="status" value="Pending"/>
+        </insert>
+    </changeSet>
+
+    <!-- Insert initial data into transaction table -->
+    <changeSet id="insertDataIntoTransaction" author="yourname">
+        <insert tableName="transaction">
+            <column name="id" valueNumeric="30001"/>
+            <column name="record_id" valueNumeric="20001"/>
+            <column name="due_date" valueDate="2023-02-01"/>
+            <column name="description" value="Transaction 1"/>
+            <column name="withdraw_amount" valueNumeric="500"/>
+            <column name="deposit_amount" valueNumeric="0"/>
+        </insert>
+        <!-- Add similar inserts for other transactions -->
+        <!-- Transaction 2 -->
+        <insert tableName="transaction">
+            <column name="id" valueNumeric="30002"/>
+            <column name="record_id" valueNumeric="20001"/>
+            <column name="due_date" valueDate="2023-03-15"/>
+            <column name="description" value="Transaction 2"/>
+            <column name="withdraw_amount" valueNumeric="0"/>
+            <column name="deposit_amount" valueNumeric="800"/>
+        </insert>
+        <!-- Transaction 3 -->
+        <insert tableName="transaction">
+            <column name="id" valueNumeric="30003"/>
+            <column name="record_id" valueNumeric="20001"/>
+            <column name="due_date" valueDate="2023-04-01"/>
+            <column name="description" value="Transaction 3"/>
+            <column name="withdraw_amount" valueNumeric="300"/>
+            <column name="deposit_amount" valueNumeric="0"/>
+        </insert>
+    </changeSet>
+    
+</databaseChangeLog>
