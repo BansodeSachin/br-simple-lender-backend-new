@@ -33,13 +33,13 @@ public class RecordRestController {
 	private BorrowerService borrowerService;
 	
 	@GetMapping("/borrowers/{borrowerId}/allRecords")
-	@CrossOrigin(origins = "http://localhost:4200") // Allow requests from this origin
+	@CrossOrigin
 	public List<Record> getRecords(@PathVariable("borrowerId") int theBorrowerId) {
 		return recordService.getRecords(theBorrowerId);
 	}
 	
 	@GetMapping("/borrowers/{borrowerId}/records")
-	@CrossOrigin(origins = "http://localhost:4200") // Allow requests from this origin
+	@CrossOrigin
     public List<Record> getAllRecordsByPageRequest(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
@@ -53,7 +53,7 @@ public class RecordRestController {
     }
 	
 	@GetMapping("/borrowers/{borrowerId}/records/{id}")
-	@CrossOrigin(origins = "http://localhost:4200") // Allow requests from this origin
+	@CrossOrigin
 	public Record getRecordById(@PathVariable("borrowerId") int theBorrowerId, 
 			@PathVariable("id") int theId) {
 		
@@ -61,7 +61,7 @@ public class RecordRestController {
 	}
 	
 	@PostMapping("/borrowers/{borrowerId}/records")
-	@CrossOrigin(origins = "http://localhost:4200") // Allow requests from this origin
+	@CrossOrigin
 	public Record saveRecord(@PathVariable("borrowerId") int theBorrowerId, 
 			@RequestBody Record theRecord) {
 		
@@ -74,7 +74,7 @@ public class RecordRestController {
 	}
 	
 	@PutMapping("/borrowers/{borrowerId}/records")
-	@CrossOrigin(origins = "http://localhost:4200") // Allow requests from this origin
+	@CrossOrigin
 	public Record updateRecord(@PathVariable("borrowerId") int theBorrowerId,
 			@RequestBody Record theRecord) {
 		
@@ -85,7 +85,7 @@ public class RecordRestController {
 	}
 	
 	@DeleteMapping("/borrowers/{borrowerId}/records/{id}")
-	@CrossOrigin(origins = "http://localhost:4200") // Allow requests from this origin
+	@CrossOrigin
 	public String deleteRecord(@PathVariable("borrowerId") int theBorrowerId,
 			@PathVariable("id") int theId) {
 		

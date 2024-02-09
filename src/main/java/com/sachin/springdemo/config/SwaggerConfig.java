@@ -18,7 +18,7 @@ public class SwaggerConfig {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.sachin.springdemo"))
+                .apis(RequestHandlerSelectors.basePackage("com.sachin.springdemo.rest"))
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(apiInfo());

@@ -29,13 +29,13 @@ public class BorrowerRestController {
 	private BorrowerService borrowerService;
 	
 	@GetMapping("/allBorrowers")
-	@CrossOrigin(origins = "http://localhost:4200") // Allow requests from this origin
+	@CrossOrigin
 	public List<Borrower> getBorrowers() {
 		return borrowerService.getBorrowers();
 	}
 	
 	@GetMapping("/borrowers")
-	@CrossOrigin(origins = "http://localhost:4200") // Allow requests from this origin
+	@CrossOrigin
     public List<Borrower> getAllBorrowersByPageRequest(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
@@ -49,14 +49,14 @@ public class BorrowerRestController {
     }
 	
 	@GetMapping("/borrowers/{id}")
-	@CrossOrigin(origins = "http://localhost:4200") // Allow requests from this origin
+	@CrossOrigin
 	public Borrower getBorrowerById(@PathVariable("id") int theId) {
 		
 		return borrowerService.getBorrower(theId);
 	}
 	
 	@PostMapping("/borrowers")
-	@CrossOrigin(origins = "http://localhost:4200") // Allow requests from this origin
+	@CrossOrigin
 	public Borrower saveBorrower(@RequestBody Borrower theBorrower) {
 		
 		theBorrower.setId(0);
@@ -67,7 +67,7 @@ public class BorrowerRestController {
 	}
 	
 	@PutMapping("/borrowers")
-	@CrossOrigin(origins = "http://localhost:4200") // Allow requests from this origin
+	@CrossOrigin
 	public Borrower updateBorrower(@RequestBody Borrower theBorrower) {
 		
 		borrowerService.saveBorrower(theBorrower);
@@ -76,7 +76,7 @@ public class BorrowerRestController {
 	}
 	
 	@DeleteMapping("/borrowers/{id}")
-	@CrossOrigin(origins = "http://localhost:4200") // Allow requests from this origin
+	@CrossOrigin
 	public String deleteBorrower(@PathVariable("id") int theId) {
 		
 		borrowerService.deleteBorrower(theId);

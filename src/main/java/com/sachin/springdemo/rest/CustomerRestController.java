@@ -28,21 +28,21 @@ public class CustomerRestController {
 	
 	@PreAuthorize("hasAuthority('ROLE_EMPLOYEE')")
 	@GetMapping("/customers")
-	@CrossOrigin(origins = "http://localhost:4200") // Allow requests from this origin
+	@CrossOrigin
 	public List<Customer> getCustomers() {
 		return customerService.getCustomers();
 	}
 	
 	@PreAuthorize("hasAuthority('ROLE_ADMIN')")
 	@GetMapping("/customers/{id}")
-	@CrossOrigin(origins = "http://localhost:4200") // Allow requests from this origin
+	@CrossOrigin
 	public Customer getCustomerById(@PathVariable("id") int theId) {
 		
 		return customerService.getCustomer(theId);
 	}
 	
 	@PostMapping("/customers")
-	@CrossOrigin(origins = "http://localhost:4200") // Allow requests from this origin
+	@CrossOrigin
 	public Customer saveCustomer(@RequestBody Customer theCustomer) {
 		
 		theCustomer.setId(0);
@@ -53,7 +53,7 @@ public class CustomerRestController {
 	}
 	
 	@PutMapping("/customers")
-	@CrossOrigin(origins = "http://localhost:4200") // Allow requests from this origin
+	@CrossOrigin
 	public Customer updateCustomer(@RequestBody Customer theCustomer) {
 		
 		customerService.saveCustomer(theCustomer);
@@ -62,7 +62,7 @@ public class CustomerRestController {
 	}
 	
 	@DeleteMapping("/customers/{id}")
-	@CrossOrigin(origins = "http://localhost:4200") // Allow requests from this origin
+	@CrossOrigin
 	public String deleteCustomer(@PathVariable("id") int theId) {
 		
 		customerService.deleteCustomer(theId);

@@ -1,4 +1,4 @@
-package com.sachin.springdemo.controller;
+package com.sachin.springdemo.rest;
 
 import java.util.HashSet;
 import java.util.List;
@@ -61,6 +61,7 @@ public class AuthController {
 	@Autowired
 	private JwtUtils jwtUtils;
 
+	@CrossOrigin
 	@PostMapping("/signin")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 		logger.info("Login api called");
@@ -78,6 +79,7 @@ public class AuthController {
 				userDetails.getEmail(), roles));
 	}
 
+	@CrossOrigin
 	@PostMapping("/signup")
 	public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
 		if (userRepository.existsByUserName(signUpRequest.getUserName())) {
@@ -128,6 +130,7 @@ public class AuthController {
 		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
 	}
 
+	@CrossOrigin
 	@PostMapping("/signout")
 	public ResponseEntity<?> signOut(HttpServletRequest request) {
 		String username = null;
@@ -142,6 +145,7 @@ public class AuthController {
 		return ResponseEntity.ok(new MessageResponse("User logout successfully!"));
 	}
 
+	@CrossOrigin
 	@PostMapping("/changePassword")
 	public ResponseEntity<?> changeUserPassword(@RequestBody UserChangePasswordRequest userChangePasswordRequest) {
 		

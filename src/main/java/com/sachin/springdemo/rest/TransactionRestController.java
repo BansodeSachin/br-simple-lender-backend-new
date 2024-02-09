@@ -33,13 +33,13 @@ public class TransactionRestController {
 	private RecordService recordService;
 	
 	@GetMapping("/records/{recordId}/allTransactions")
-	@CrossOrigin(origins = "http://localhost:4200") // Allow requests from this origin
+	@CrossOrigin
 	public List<Transaction> getTransactions(@PathVariable("recordId") int theRecordId) {
 		return transactionService.getTransactions(theRecordId);
 	}
 	
 	@GetMapping("/records/{recordId}/transactions")
-	@CrossOrigin(origins = "http://localhost:4200") // Allow requests from this origin
+	@CrossOrigin
     public List<Transaction> getAllTransactionsByPageRequest(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
@@ -53,7 +53,7 @@ public class TransactionRestController {
     }
 	
 	@GetMapping("/records/{recordId}/transactions/{id}")
-	@CrossOrigin(origins = "http://localhost:4200") // Allow requests from this origin
+	@CrossOrigin
 	public Transaction getTransactionById(@PathVariable("recordId") int theRecordId, 
 			@PathVariable("id") int theId) {
 		
@@ -61,7 +61,7 @@ public class TransactionRestController {
 	}
 	
 	@PostMapping("/records/{recordId}/transactions")
-	@CrossOrigin(origins = "http://localhost:4200") // Allow requests from this origin
+	@CrossOrigin
 	public Transaction saveTransaction(@PathVariable("recordId") int theRecordId, 
 			@RequestBody Transaction theTransaction) {
 		
@@ -74,7 +74,7 @@ public class TransactionRestController {
 	}
 	
 	@PutMapping("/records/{recordId}/transactions")
-	@CrossOrigin(origins = "http://localhost:4200") // Allow requests from this origin
+	@CrossOrigin
 	public Transaction updateTransaction(@PathVariable("recordId") int theRecordId,
 			@RequestBody Transaction theTransaction) {
 		
@@ -85,7 +85,7 @@ public class TransactionRestController {
 	}
 	
 	@DeleteMapping("/records/{recordId}/transactions/{id}")
-	@CrossOrigin(origins = "http://localhost:4200") // Allow requests from this origin
+	@CrossOrigin
 	public String deleteTransaction(@PathVariable("recordId") int theRecordId,
 			@PathVariable("id") int theId) {
 		
