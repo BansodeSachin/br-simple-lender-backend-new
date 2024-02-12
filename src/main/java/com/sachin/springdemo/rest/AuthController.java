@@ -40,7 +40,6 @@ import com.sachin.springdemo.dao.UserRepository;
 import com.sachin.springdemo.security.jwt.JwtUtils;
 import com.sachin.springdemo.security.services.UserDetailsImpl;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
