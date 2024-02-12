@@ -15,11 +15,11 @@ COPY target/br-simple-lender-backend-new-0.0.1-SNAPSHOT.jar /app/app.jar
 EXPOSE 8082
 
 # Set environment variables for SSL
-ENV SERVER_SSL_KEY_STORE=/app/fullchain.pem
-ENV SERVER_SSL_KEY_STORE_PASSWORD=
-ENV SERVER_SSL_KEY_STORE_TYPE=PEM
-ENV SERVER_SSL_KEY_ALIAS=tomcat
-ENV SERVER_SSL_KEY_PASSWORD=/app/privkey.pem
+#ENV SERVER_SSL_KEY_STORE=/app/fullchain.pem
+#ENV SERVER_SSL_KEY_STORE_PASSWORD=
+#ENV SERVER_SSL_KEY_STORE_TYPE=PEM
+#ENV SERVER_SSL_KEY_ALIAS=tomcat
+#ENV SERVER_SSL_KEY_PASSWORD=/app/privkey.pem
 
 # Command to run the application
-CMD ["java", "-jar", "/app/app.jar", "--server.port=8082"]
+CMD ["java", "-jar", "/app/app.jar"]
